@@ -11,12 +11,13 @@ public class MovieDetails {
 	private Integer id;
 	private String description;
 	private String title;
-	private List<String> cast;
-	private List<String> crew;
+	private List<CastCrewMember> cast;
+	private List<CastCrewMember> crew;
 	private String genre;
 	private Date releaseDate;
 	private String Language;
 	private Integer overallRating;
+	private List<Comment> comments;
 	
 	public Integer getId() {
 		return id;
@@ -36,16 +37,16 @@ public class MovieDetails {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public List<String> getCast() {
+	public List<CastCrewMember> getCast() {
 		return cast;
 	}
-	public void setCast(List<String> cast) {
+	public void setCast(List<CastCrewMember> cast) {
 		this.cast = cast;
 	}
-	public List<String> getCrew() {
+	public List<CastCrewMember> getCrew() {
 		return crew;
 	}
-	public void setCrew(List<String> crew) {
+	public void setCrew(List<CastCrewMember> crew) {
 		this.crew = crew;
 	}
 	public String getGenre() {
@@ -71,6 +72,12 @@ public class MovieDetails {
 	}
 	public void setOverallRating(Integer overallRating) {
 		this.overallRating = overallRating;
+	}
+	public List<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 	
 	
