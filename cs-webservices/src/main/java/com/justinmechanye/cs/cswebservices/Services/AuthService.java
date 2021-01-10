@@ -27,8 +27,8 @@ public class AuthService implements IAuthService {
 	public ResponseEntity<AuthResponseModel> login(String userName, String password) {
 		User user = this.userRepository.findByUsername(userName);
 		AuthResponseModel arm = new AuthResponseModel();
-		
-		if(!password.equals(user.getPassword())) {
+		// TODO set up hashing for input password and check that hashed pwds are the same.
+		if(!user.getHash().equals(password)) {
 			return new ResponseEntity<AuthResponseModel>(arm, HttpStatus.UNAUTHORIZED);
 		} else {
 			//createJWT(user.getId(), "reviewStateAuth", "loggedin", 25000, user.getRole());
