@@ -1,10 +1,10 @@
 package com.justinmechanye.cs.cswebservices.Repositories;
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
+import com.justinmechanye.cs.cswebservices.Models.MovieSimple;
 
-import com.justinmechanye.cs.cswebservices.Models.MovieDetails;
-import com.justinmechanye.cs.cswebservices.Models.User;
-
-public interface MovieRepository extends CrudRepository<MovieDetails, Integer>{
-	public MovieDetails findByMovieId(int id);
+public interface MovieRepository extends CrudRepository<MovieSimple, Integer> {
+	public List<MovieSimple> findAll();
 }

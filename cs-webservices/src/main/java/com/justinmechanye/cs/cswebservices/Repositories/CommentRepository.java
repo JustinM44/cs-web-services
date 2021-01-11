@@ -1,10 +1,19 @@
-package com.justinmechanye.cs.cswebservices.Repositories;
 
-import java.util.List;
+  package com.justinmechanye.cs.cswebservices.Repositories;
+  
+  import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.data.repository.CrudRepository;
-import com.justinmechanye.cs.cswebservices.Models.Comment;
+import org.springframework.stereotype.Repository;
 
-public interface CommentRepository extends CrudRepository<Comment, Integer> {
-	public List<Comment> findAllByMovieId(Integer movieId);
-}
+import
+  com.justinmechanye.cs.cswebservices.Models.Comment;
+  
+  @Repository
+  public interface CommentRepository extends CrudRepository<Comment, Integer> {
+	 
+  }
+ 

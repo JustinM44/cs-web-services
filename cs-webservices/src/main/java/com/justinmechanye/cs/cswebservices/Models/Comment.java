@@ -1,16 +1,22 @@
 package com.justinmechanye.cs.cswebservices.Models;
 
 import javax.annotation.Generated;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="comments")
 public class Comment {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private Integer movieId;
-	private Integer userId;
+	private Integer movieid;
+	private Integer userid;
 	private String comment;
 	private Integer rating;
 	
@@ -24,16 +30,16 @@ public class Comment {
 		this.rating = rating;
 	}
 	public Integer getMovieId() {
-		return movieId;
+		return movieid;
 	}
 	public void setMovieId(Integer movieId) {
-		this.movieId = movieId;
+		this.movieid = movieId;
 	}
 	public Integer getUserId() {
-		return userId;
+		return userid;
 	}
 	public void setUserId(Integer userId) {
-		this.userId = userId;
+		this.userid = userId;
 	}
 	public String getComment() {
 		return comment;

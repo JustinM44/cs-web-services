@@ -3,21 +3,29 @@ package com.justinmechanye.cs.cswebservices.Models;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 //TODO build tables for this class
-//@Entity
+@Entity
+@Table(name = "movies")
 public class MovieDetails {
-	//@Id
+	@Id
 	private Integer id;
 	private String description;
 	private String title;
-	private List<CastCrewMember> cast;
-	private List<CastCrewMember> crew;
+	@OneToMany(mappedBy = "movieid")
+	private List<CastCrewMember> crew; 
 	private String genre;
-	private Date releaseDate;
-	private String Language;
-	private Integer overallRating;
-	private List<Comment> comments;
+	private Date releasedate;
+	private String language;
+	private Integer overallrating;
+	
+	@OneToMany(mappedBy = "movieid")
+	private List<Comment> comments; 
 	
 	public Integer getId() {
 		return id;
@@ -37,18 +45,7 @@ public class MovieDetails {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public List<CastCrewMember> getCast() {
-		return cast;
-	}
-	public void setCast(List<CastCrewMember> cast) {
-		this.cast = cast;
-	}
-	public List<CastCrewMember> getCrew() {
-		return crew;
-	}
-	public void setCrew(List<CastCrewMember> crew) {
-		this.crew = crew;
-	}
+
 	public String getGenre() {
 		return genre;
 	}
@@ -56,28 +53,35 @@ public class MovieDetails {
 		this.genre = genre;
 	}
 	public Date getReleaseDate() {
-		return releaseDate;
+		return releasedate;
 	}
 	public void setReleaseDate(Date releaseDate) {
-		this.releaseDate = releaseDate;
+		this.releasedate = releaseDate;
 	}
 	public String getLanguage() {
-		return Language;
+		return language;
 	}
 	public void setLanguage(String language) {
-		Language = language;
+		this.language = language;
 	}
 	public Integer getOverallRating() {
-		return overallRating;
+		return this.overallrating;
 	}
 	public void setOverallRating(Integer overallRating) {
-		this.overallRating = overallRating;
+		this.overallrating = overallRating;
 	}
+
 	public List<Comment> getComments() {
 		return comments;
 	}
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+	public List<CastCrewMember> getCrew() {
+		return crew;
+	}
+	public void setCrew(List<CastCrewMember> crew) {
+		this.crew = crew;
 	}
 	
 	
