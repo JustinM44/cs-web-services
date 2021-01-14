@@ -6,15 +6,15 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.justinmechanye.cs.cswebservices.Models.AuthResponseModel;
 import com.justinmechanye.cs.cswebservices.Models.LoginModel;
-import com.justinmechanye.cs.cswebservices.Models.User;
-import com.justinmechanye.cs.cswebservices.Repositories.UserRepository;
 import com.justinmechanye.cs.cswebservices.Services.AuthService;
 
 @RestController
+@RequestMapping("/api/authservices")
 public class AuthController {
 	@Autowired
 	AuthService authService;

@@ -1,4 +1,4 @@
-package com.justinmechanye.cs.cswebservices.Models;
+package com.justinmechanye.cs.cswebservices.Models.UserModels;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

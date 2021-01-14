@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.justinmechanye.cs.cswebservices.Interfaces.IMovieService;
-import com.justinmechanye.cs.cswebservices.Models.MovieDetails;
-import com.justinmechanye.cs.cswebservices.Models.MovieSimple;
+import com.justinmechanye.cs.cswebservices.Models.MovieModels.MovieDetails;
+import com.justinmechanye.cs.cswebservices.Models.MovieModels.MovieSimple;
 import com.justinmechanye.cs.cswebservices.Repositories.MovieDetailsRepository;
 import com.justinmechanye.cs.cswebservices.Repositories.MovieRepository;
 

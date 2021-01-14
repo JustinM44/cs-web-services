@@ -5,7 +5,7 @@
 
 
 import org.springframework.data.repository.CrudRepository;
-import com.justinmechanye.cs.cswebservices.Models.MovieDetails; 
+import com.justinmechanye.cs.cswebservices.Models.MovieModels.*; 
 
   
 public interface MovieDetailsRepository extends CrudRepository<MovieDetails,Integer>{ 

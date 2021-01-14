@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import com.justinmechanye.cs.cswebservices.Interfaces.IAuthService;
 import com.justinmechanye.cs.cswebservices.Models.AuthResponseModel;
 import com.justinmechanye.cs.cswebservices.Models.LoginModel;
-import com.justinmechanye.cs.cswebservices.Models.User;
 import com.justinmechanye.cs.cswebservices.Repositories.UserRepository;
 
 
@@ -26,7 +25,7 @@ public class AuthService implements IAuthService {
 	
 	@Override
 	public ResponseEntity<AuthResponseModel> login(LoginModel userRequest) {
-		User user = this.userRepository.findByUsername(userRequest.getUsername());
+		com.justinmechanye.cs.cswebservices.Models.UserModels.User user = this.userRepository.findByUsername(userRequest.getUsername());
 		AuthResponseModel arm = new AuthResponseModel();
 		// TODO set up hashing for input password and check that hashed pwds are the same.
 		if(!user.getHash().equals(userRequest.getPassword())) {
