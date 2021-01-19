@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,6 +49,12 @@ public class MovieController {
 	@PostMapping(value="/submitcommentupdate")
 	public String updateComment(@RequestBody Comment comment) {
 		return crs.updateCommentRaiting(comment);
+	}
+	
+	@CrossOrigin(origins = "http://localhost:4200")
+	@DeleteMapping(value="/deleteComponent/{id}")
+	public String deleteComment(@PathVariable Integer id) {
+		return crs.deleteComment(id);
 	}
 	
 }

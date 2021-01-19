@@ -13,8 +13,8 @@ public class CommentInput {
 	
 	private UserShort user;
 	private String comment;
-	private Integer rating;
-	private Integer movieid;
+	private Integer raiting;
+	private Integer movieId;
 	
 	public String getComment() {
 		return comment;
@@ -22,18 +22,18 @@ public class CommentInput {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public Integer getRating() {
-		return rating;
+	public Integer getRaiting() {
+		return raiting;
 	}
-	public void setRating(Integer rating) {
-		this.rating = rating;
+	public void setRaiting(Integer rating) {
+		this.raiting = rating;
 	}
 	
 	public Integer getMovieid() {
-		return movieid;
+		return movieId;
 	}
 	public void setMovieid(Integer movieid) {
-		this.movieid = movieid;
+		this.movieId = movieid;
 	}
 	public UserShort getUser() {
 		return user;

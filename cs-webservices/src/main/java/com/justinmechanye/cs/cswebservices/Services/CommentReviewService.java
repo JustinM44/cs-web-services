@@ -31,12 +31,18 @@ public class CommentReviewService implements ICommentReviewService{
 		
 		newComment.setComment(comment.getComment());
 		newComment.setMovieId(comment.getMovieid());
-		newComment.setRaiting(comment.getRating());
+		newComment.setRaiting(comment.getRaiting());
 		newComment.setUser(comment.getUser());
 		
 		commentRepo.save(newComment);
 		
 		return "Comment Submited";
+	}
+
+	@Override
+	public String deleteComment(Integer id) {
+		commentRepo.deleteById(id);
+		return "Comment Deleted";
 	}
 
 }
