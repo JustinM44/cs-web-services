@@ -3,6 +3,8 @@ package com.justinmechanye.cs.cswebservices.Controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,9 +54,12 @@ public class MovieController {
 	}
 	
 	@CrossOrigin(origins = "http://localhost:4200")
-	@DeleteMapping(value="/deleteComponent/{id}")
-	public String deleteComment(@PathVariable Integer id) {
-		return crs.deleteComment(id);
+	@PostMapping(value="/deleteComponent/{userId}")
+	public ResponseEntity<String> deleteComment(@PathVariable Integer userId, @RequestBody Comment commentToDelete ) {
+		if(commentToDelete.getUser().getId() == userId) {
+			return new ResponseEntity<String>(crs.deleteComment(commentToDelete.getId()), HttpStatus.OK);
+		}
+		return new ResponseEntity<String>("You do not have authorization for this", HttpStatus.UNAUTHORIZED);
 	}
 	
 }
