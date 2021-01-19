@@ -25,19 +25,24 @@ public class AuthService implements IAuthService {
 	
 	@Override
 	public ResponseEntity<AuthResponseModel> login(LoginModel userRequest) {
-		com.justinmechanye.cs.cswebservices.Models.UserModels.User user = this.userRepository.findByUsername(userRequest.getUsername());
 		AuthResponseModel arm = new AuthResponseModel();
-		// TODO set up hashing for input password and check that hashed pwds are the same.
-		if(!user.getHash().equals(userRequest.getPassword())) {
+		try {
+			com.justinmechanye.cs.cswebservices.Models.UserModels.User user = this.userRepository.findByUsername(userRequest.getUsername());
+			// TODO set up hashing for input password and check that hashed pwds are the same.
+			if(!user.getHash().equals(userRequest.getPassword())) {
+				return new ResponseEntity<AuthResponseModel>(arm, HttpStatus.UNAUTHORIZED);
+			} else {
+				//createJWT(user.getId(), "reviewStateAuth", "loggedin", 25000, user.getRole());
+				arm.setJWT("JWT");
+				arm.setRole(user.getRole());
+				arm.setUsername(user.getUsername());
+				arm.setUserId(user.getId());
+			}
+			return new ResponseEntity<AuthResponseModel>(arm, HttpStatus.OK);
+		} catch(Exception e) {
 			return new ResponseEntity<AuthResponseModel>(arm, HttpStatus.UNAUTHORIZED);
-		} else {
-			//createJWT(user.getId(), "reviewStateAuth", "loggedin", 25000, user.getRole());
-			arm.setJWT("JWT");
-			arm.setRole(user.getRole());
-			arm.setUsername(user.getUsername());
-			arm.setUserId(user.getId());
 		}
-		return new ResponseEntity<AuthResponseModel>(arm, HttpStatus.OK);
+		
 	}
 
 	@Override

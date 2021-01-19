@@ -22,7 +22,7 @@ public class MovieDetails {
 	private String genre;
 	private Date releasedate;
 	private String language;
-	private Integer overallrating;
+	private double overallrating;
 	
 	@OneToMany(mappedBy = "movieid")
 	private List<Comment> comments; 
@@ -64,10 +64,10 @@ public class MovieDetails {
 	public void setLanguage(String language) {
 		this.language = language;
 	}
-	public Integer getOverallRating() {
+	public double getOverallRaiting() {
 		return this.overallrating;
 	}
-	public void setOverallRating(Integer overallRating) {
+	public void setOverallRaiting(double overallRating) {
 		this.overallrating = overallRating;
 	}
 

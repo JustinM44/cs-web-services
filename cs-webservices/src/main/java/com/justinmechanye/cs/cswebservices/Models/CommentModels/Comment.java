@@ -22,7 +22,7 @@ public class Comment {
 	private Integer id;
 	private Integer movieid;
 	
-	@OneToOne(cascade = CascadeType.REMOVE)
+	@OneToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "userid", referencedColumnName="id")
 	private UserShort user; 
 	private String comment;
