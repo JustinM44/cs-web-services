@@ -24,7 +24,6 @@ public class MovieService implements IMovieService {
 	@Override
 	public MovieDetails getMovieDetails(Integer id) {
 		Optional<MovieDetails> md = this.movieDetailsRepo.findById(id);
-		this.updateCollectiveRaiting(md.get());
 		return md.get();
 	}
 
@@ -34,7 +33,12 @@ public class MovieService implements IMovieService {
 		return movieList;
 	}
 	
-	private void updateCollectiveRaiting(MovieDetails md) {
+	public List<MovieSimple> getMoviesFromSearch(String keyword){
+		List<MovieSimple> movieList = this.movieRepo.search(keyword);
+		return movieList;
+	}
+	
+	public MovieDetails updateCollectiveRaiting(MovieDetails md) {
 		double overallRaiting;
 		double totalRaiting = 0;
 		if(md.getComments().size() >= 1) {
@@ -43,6 +47,12 @@ public class MovieService implements IMovieService {
 			}
 			overallRaiting = totalRaiting/md.getComments().size();
 			md.setOverallRaiting(overallRaiting);
+			this.movieDetailsRepo.save(md);
+			return md;
+		} else {
+			md.setOverallRaiting(0);
+			this.movieDetailsRepo.save(md);
+			return md;
 		}
 	}
 

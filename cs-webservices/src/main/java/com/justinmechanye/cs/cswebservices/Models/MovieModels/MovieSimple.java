@@ -12,9 +12,10 @@ public class MovieSimple {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private Integer overallrating;
+	private double overallrating;
 	private String title;
 	private String imageurl;
+	private String genre;
 	
 	public Integer getId() {
 		return id;
@@ -22,10 +23,10 @@ public class MovieSimple {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getOverallrating() {
+	public double getOverallrating() {
 		return overallrating;
 	}
-	public void setOverallrating(Integer overallrating) {
+	public void setOverallrating(double overallrating) {
 		this.overallrating = overallrating;
 	}
 	public String getTitle() {
@@ -39,5 +40,11 @@ public class MovieSimple {
 	}
 	public void setImageurl(String imageurl) {
 		this.imageurl = imageurl;
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
 }
