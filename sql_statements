@@ -1,0 +1,75 @@
+create database cs_auth;
+create user 'authUser' identified by 'ThePassword';
+grant all on cs_auth.* to 'authUser';
+
+CREATE TABLE `user` (
+  `id` int NOT NULL,
+  `username` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `salt` varchar(45) NOT NULL,
+  `hash` varchar(100) NOT NULL,
+  `role` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) 
+
+CREATE TABLE `crew` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `movieId` int NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `role` varchar(45) DEFAULT NULL,
+  `position` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) 
+
+
+CREATE TABLE `comments` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `movieId` int NOT NULL,
+  `userId` int NOT NULL,
+  `comment` varchar(250),
+  `raiting` int,
+  PRIMARY KEY (`id`),
+  Foreign Key (userId) REFERENCES user(id) ON DELETE CASCADE
+);
+
+CREATE TABLE `movies` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `description` varchar(250),
+  `title` varchar(60),
+  `genre` varchar(15),
+  `releaseDate` DATETIME,
+  `language` varchar(45),
+  `overallRating` int,
+  `imageurl` varchar(255),
+  PRIMARY KEY (`id`)
+);
+
+INSERT INTO cs_auth.movies(id, description, title, genre, releaseDate, language, overallRating, imageurl)
+VALUES (01, 'This is demo movie two what a tragedy', 'demo one and demo two', 'Tragedy', '2021-1-10', 'English',0, 'https://material.angular.io/assets/img/examples/shiba2.jpg');
+
+INSERT INTO cs_auth.movies(id, description, title, genre, releaseDate, language, overallRating, imageurl)
+VALUES (02, 'This is a Epic movie demo', 'Most Epic Movie of the year', 'Action', '2021-1-10', 'English',0, 'https://material.angular.io/assets/img/examples/shiba2.jpg');
+
+INSERT INTO `cs_auth`.`crew`
+(`id`,`movieId`,`name`,`role`,`position`)
+VALUES(1,1,'Some Person 1','Crew','camera');
+
+INSERT INTO `cs_auth`.`crew`
+(`id`,`movieId`,`name`,`role`,`position`)
+VALUES(2,1,'Some Person 2','Cast','Lead Actress');
+
+INSERT INTO `cs_auth`.`crew`
+(`id`,`movieId`,`name`,`role`,`position`)
+VALUES(3,2,'Some Person 1','Crew','camera');
+
+INSERT INTO `cs_auth`.`crew`
+(`id`,`movieId`,`name`,`role`,`position`)
+VALUES(4,2,'Some Person 2','Cast','Lead Actress');
+
+INSERT INTO `cs_auth`.`user`
+(`id`,`username`,`password`,`salt`,`hash`,`role`)
+VALUES(1, 'testUser1', 'p455word', '0', 'p455word', 'user');
+
+INSERT INTO `cs_auth`.`user`
+(`id`,`username`,`password`,`salt`,`hash`,`role`)
+VALUES(1, 'testUser2', 'p455word2', '0', 'p455word2', 'user');
