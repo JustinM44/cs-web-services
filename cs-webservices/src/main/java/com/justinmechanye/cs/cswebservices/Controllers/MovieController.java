@@ -33,43 +33,45 @@ public class MovieController {
 	@Autowired
 	private CommentReviewService crs;
 	
-	@CrossOrigin(origins = "http://localhost:4200")
-	@ApiOperation(value = "", authorizations = { @Authorization(value="jwtToken") })
+	@CrossOrigin(origins = "http://localhost:4200/")
 	@GetMapping(value="/getMovie/{id}")
 	public MovieDetails getMovie(@PathVariable Integer id) {
 		return movieService.getMovieDetails(id);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "http://localhost:4200/",allowedHeaders = "*")
 	@GetMapping(value="/getMovies")
 	public List<MovieSimple> getMoviesList(){
 		return movieService.getMovieList();
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "http://localhost:4200/",allowedHeaders = "*")
 	@ApiOperation(value = "", authorizations = { @Authorization(value="jwtToken") })
 	@GetMapping(value="/getMovies/{keyword}")
 	public List<MovieSimple> getMoviesListFiltered(@PathVariable String keyword){
 		return movieService.getMoviesFromSearch(keyword);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200")
+	
 	@ApiOperation(value = "", authorizations = { @Authorization(value="jwtToken") })
 	@PostMapping(value="/submitcomment")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public String submitNewComment(@RequestBody CommentInput comment) {
 		return crs.submitComment(comment);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200")
+	
 	@ApiOperation(value = "", authorizations = { @Authorization(value="jwtToken") })
 	@PostMapping(value="/submitcommentupdate")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public String updateComment(@RequestBody Comment comment) {
 		return crs.updateCommentRaiting(comment);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200")
+	
 	@ApiOperation(value = "", authorizations = { @Authorization(value="jwtToken") })
 	@PostMapping(value="/deleteComponent/{userId}")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<String> deleteComment(@PathVariable Integer userId, @RequestBody Comment commentToDelete ) {
 		if(commentToDelete.getUser().getId() == userId) {
 			return new ResponseEntity<String>(crs.deleteComment(commentToDelete.getId()), HttpStatus.OK);
@@ -77,9 +79,10 @@ public class MovieController {
 		return new ResponseEntity<String>("You do not have authorization for this", HttpStatus.UNAUTHORIZED);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200")
+	
 	@ApiOperation(value = "", authorizations = { @Authorization(value="jwtToken") })
 	@PostMapping(value="/updateRaiting/")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<MovieDetails> updateRaiting(@RequestBody MovieDetails movie ) {
 		return new ResponseEntity<MovieDetails>(this.movieService.updateCollectiveRaiting(movie), HttpStatus.OK);
 	}

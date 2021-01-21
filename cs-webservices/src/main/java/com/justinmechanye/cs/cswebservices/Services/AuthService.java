@@ -80,6 +80,6 @@ public class AuthService implements IAuthService {
 										.collect(Collectors.toList())).setIssuedAt(new Date(System.currentTimeMillis()))
 						.setExpiration(new Date(System.currentTimeMillis() + 604800000))
 						.signWith(SignatureAlgorithm.HS512, secretKey.getBytes()).compact();
-		return "Bearer " + token;
+		return token;
 	}
 }

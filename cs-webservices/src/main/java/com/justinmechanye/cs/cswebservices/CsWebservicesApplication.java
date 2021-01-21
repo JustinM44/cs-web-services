@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsUtils;
 
 import com.justinmechanye.cs.cswebservices.Services.JWTAuthFilter;
 
@@ -52,6 +53,8 @@ public class CsWebservicesApplication {
 				"/swagger-resources/**",
 				"/api/authservices/login",
 				"/api/movies/getMovies",
+				"/api/movies/getMovies/**",
+				"/api/movies/getMovie/**",
 				"/swagger-ui/**",
 				"/v2/api-docs"
 		};
@@ -61,6 +64,7 @@ public class CsWebservicesApplication {
 			http.csrf().disable()
 			.addFilterAfter(new JWTAuthFilter(), UsernamePasswordAuthenticationFilter.class)
 			.authorizeRequests()
+			.requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 			.antMatchers(NOAUTH).permitAll()
 			.anyRequest().authenticated();
 		}
